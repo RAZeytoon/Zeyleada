@@ -5,21 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [
-    Component.Comments({
-      provider: 'giscus',
-      options: {
-        // from data-repo
-        repo: 'eledah/quartz_blog',
-        // from data-repo-id
-        repoId: 'R_kgDOLxbW_g',
-        // from data-category
-        category: 'Announcements',
-        // from data-category-id
-        categoryId: 'DIC_kwDOLxbW_s4ChRbJ',
-      }
-    }),
-  ],
+  afterBody: [],
   footer: Component.Footer({
     links: {
       // "آپارات": "https://www.aparat.com/Crystalline",
@@ -33,29 +19,26 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
-    Component.ContentMeta(),
-    Component.TagList(),
   ],
   left: [
-    // Component.DesktopOnly(Component.Sidenotes()),
     Component.DesktopOnly(Component.Graph()),
     Component.DesktopOnly(Component.Backlinks()),
 
     Component.MobileOnly(Component.PageTitle()),
     Component.MobileOnly(Component.Darkmode()),
-    // Component.MobileOnly(Component.Search()),
   ],
   right: [
     Component.DesktopOnly(Component.PageTitle()),
+    Component.Search(),
     Component.DesktopOnly(Component.Darkmode()),
-    Component.DesktopOnly(Component.Search()),
-    // Component.DesktopOnly(Component.Explorer({
-    //   filterFn: (node) => {
-    //     // exclude files with the tag "explorerexclude"
-    //     return node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
-    //   },
-    // })),
+    Component.DesktopOnly(Component.Explorer({
+      filterFn: (node) => {
+        // exclude files with the tag "explorerexclude"
+        return node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
+      },
+    })),
     Component.DesktopOnly(Component.TableOfContents()),
+
     Component.MobileOnly(Component.Backlinks()),
   ],
 }

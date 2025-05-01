@@ -109,20 +109,20 @@ a {
 
 .desktop-only {
   display: initial;
-  @media all and (max-width: $desktopBreakpoint) {
+  @media all and (max-width: $fullPageWidth) {
     display: none;
   }
 }
 
 .mobile-only {
   display: none;
-  @media all and (max-width: $desktopBreakpoint) {
+  @media all and (max-width: $fullPageWidth) {
     display: initial;
   }
 }
 
 .page {
-  @media all and (max-width: $desktopBreakpoint) {
+  @media all and (max-width: $fullPageWidth) {
     margin: 0 auto;
     padding: 0 1rem;
     max-width: $pageWidth;
@@ -157,7 +157,7 @@ a {
   & > #quartz-body {
     width: 100%;
     display: flex;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and (max-width: $fullPageWidth) {
       flex-direction: column;
     }
 
@@ -172,7 +172,7 @@ a {
       box-sizing: border-box;
       padding: 0 4rem;
       position: fixed;
-      @media all and (max-width: $desktopBreakpoint) {
+      @media all and (max-width: $fullPageWidth) {
         position: initial;
         flex-direction: row;
         padding: 0;
@@ -183,7 +183,7 @@ a {
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      @media all and (max-width: $desktopBreakpoint) {
+      @media all and (max-width: $fullPageWidth) {
         gap: 0;
         align-items: center;
       }
@@ -193,7 +193,7 @@ a {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       flex-wrap: wrap;
       & > * {
-        @media all and (max-width: $desktopBreakpoint) {
+        @media all and (max-width: $fullPageWidth) {
           flex: 1;
           min-width: 140px;
         }
@@ -206,14 +206,14 @@ a {
     width: $pageWidth;
     margin-top: 1rem;
 
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and (max-width: $fullPageWidth) {
       width: initial;
     }
   }
 
   & .page-header {
     margin: $topSpacing auto 0 auto;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and (max-width: $fullPageWidth) {
       margin-top: 2rem;
     }
   }
@@ -223,7 +223,7 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: $pageWidth;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and (max-width: $fullPageWidth) {
       width: initial;
       margin-left: 0;
       margin-right: 0;
@@ -487,7 +487,7 @@ hr {
   margin: 2rem auto;
   height: 1px;
   border: none;
-  background-color: var(--gray);
+  background-color: var(--lightgray);
 }
 
 audio,
@@ -527,7 +527,7 @@ ol.overflow {
     bottom: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
-    // background: linear-gradient(transparent 0px, var(--light));
+    background: linear-gradient(transparent 0px, var(--light));
   }
 }
 

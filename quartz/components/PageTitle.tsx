@@ -8,25 +8,14 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   const baseDir = pathToRoot(fileData.slug!)
   return (
     <h1 class={classNames(displayClass, "page-title")}>
-      <div class="title-logo">
-        <a href={baseDir}><img id='icon-header' src={"https://blog.eledah.ir/static/icon-header.png"} alt="" /></a>
-        <a href={baseDir} class={displayClass} id="header-text">
-          {title}
-        </a>
-      </div>
+      <a href={baseDir}>{title}</a>
     </h1>
   )
 }
 
 PageTitle.css = `
 .page-title {
-  font-size: 1.75rem;
   margin: 0;
-}
-.title-logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 `
 

@@ -21,7 +21,6 @@ button#toc {
   }
 
   &.collapsed .fold {
-    // Edited from -90 to 90
     transform: rotateZ(90deg);
   }
 }
