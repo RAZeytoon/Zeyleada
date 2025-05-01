@@ -1,6 +1,3 @@
 ---
-title: Welcome to Quartz
+title: سلام؛ اینجا من از تجربه هام مینویسم
 ---
-
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
