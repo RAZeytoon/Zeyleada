@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "672f212830db1feb",
+        "id": "c934eb4099f1f1e2",
         "type": "tabs",
         "children": [
           {
-            "id": "165e970170f30c93",
+            "id": "00062bdb113d233a",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -167,7 +167,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "165e970170f30c93",
+  "active": "00062bdb113d233a",
   "lastOpenFiles": [
     "کارهای روزمره م رو چجوری انجام میدم/نصب اودو روی لینوکس.md",
     "پادکست/یوم‌الحساب - خراطیان تحلیل جنگ و پالایش نظریه‌ها.md",
