@@ -11,20 +11,18 @@ const config: QuartzConfig = {
     pageTitle: "Zeyleada",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
+    analytics: null,
     locale: "fa-IR",
     baseUrl: "razeytoon.github.io/Zeyleada/",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
         header: "Vazirmatn",
         body: "Vazirmatn",
-        code: "IBM Plex Mono",
+        code: "ui-monospace, Consolas, Menlo, monospace",
       },
       colors: {
         lightMode: {
@@ -56,7 +54,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
+        priority: ["frontmatter", "git", "filesystem"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {

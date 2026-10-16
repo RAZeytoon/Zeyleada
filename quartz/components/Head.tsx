@@ -18,6 +18,44 @@ export default (() => {
     const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 
+    // hreflang: صفحه‌های دارای فیلد translation (اسلاگ صفحه‌ی متناظر در زبان دیگر).
+    // فارسی در ریشه‌ی سایت است و انگلیسی زیر /en/.
+    const translation = fileData.frontmatter?.translation as string | undefined
+    const selfLang = cfg.locale?.split("-")[0] ?? "fa"
+    const otherLang = selfLang === "en" ? "fa" : "en"
+    const siteRoot = (cfg.baseUrl ?? "").replace(/\/en\/?$/, "")
+    const tail = (s: string) => (s === "index" ? "" : s)
+    const selfHref = `https://${cfg.baseUrl}/${tail(fileData.slug ?? "")}`
+    const alternate = translation
+      ? `https://${siteRoot}${selfLang === "en" ? "" : "/en"}/${tail(translation)}`
+      : undefined
+
+    // داده‌ی ساخت‌یافته (JSON-LD) برای موتورهای جست‌وجو؛ فقط برای نوشته‌ها، نه صفحه‌ی اصلی
+    const isIndex = fileData.slug === "index"
+    const tagList = ((fileData.frontmatter?.tags as string[] | undefined) ?? []).filter(Boolean)
+    const canonical = encodeURI(selfHref)
+    const jsonLd = isIndex
+      ? {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: cfg.pageTitle,
+          url: canonical,
+          inLanguage: selfLang,
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: title,
+          description,
+          inLanguage: fileData.frontmatter?.lang ?? selfLang,
+          url: canonical,
+          datePublished: fileData.dates?.created?.toISOString?.(),
+          dateModified: fileData.dates?.modified?.toISOString?.(),
+          keywords: tagList.length ? tagList.join(", ") : undefined,
+          publisher: { "@type": "Organization", name: cfg.pageTitle },
+        }
+    const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c")
+
     return (
       <head>
         <title>{title}</title>
@@ -38,6 +76,30 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
+        <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:type" content={isIndex ? "website" : "article"} />
+        <meta property="og:site_name" content={cfg.pageTitle} />
+        <meta property="og:locale" content={(cfg.locale ?? "fa-IR").replace("-", "_")} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        {tagList.length > 0 && <meta name="keywords" content={tagList.join(", ")} />}
+        <link rel="alternate" type="application/rss+xml" title={cfg.pageTitle} href={`https://${cfg.baseUrl}/index.xml`} />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          href={joinSegments(baseDir, "static/fonts/Vazirmatn-Variable.woff2")}
+        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdText }} />
+        {alternate && (
+          <>
+            <link rel="alternate" hreflang={selfLang} href={selfHref} />
+            <link rel="alternate" hreflang={otherLang} href={alternate} />
+          </>
+        )}
         {css.map((href) => (
           <link key={href} href={href} rel="stylesheet" type="text/css" spa-preserve />
         ))}

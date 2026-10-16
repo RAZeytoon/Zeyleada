@@ -1,408 +1,731 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
-// put your custom CSS here!
-
-html {
-    font-family: Vazirmatn, sans-serif !important;
+// فونت وزیرمتن روی خود سایت میزبانی می‌شود (مجوز OFL)، نه از Google Fonts
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("./static/fonts/Vazirmatn-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
+// سایت راست‌به‌چپ است (dir="rtl" روی html). قاعده‌ها اینجا با ویژگی‌های منطقی (inline-start/end)
+// نوشته شده‌اند تا نسخه‌ی انگلیسی (dir="ltr") هم بدون دست‌کاری درست دربیاید.
+
+// --- ناوبری و پیمایش ---
+
 .breadcrumb-element p {
-	margin: 0 .5rem 0 0;
-	padding: 0;
-	line-height: normal;
+  margin: 0;
+  margin-inline-end: 0.5rem;
+  padding: 0;
+  line-height: normal;
 }
 
 button#explorer .fold {
-	opacity: .8;
-	transition: transform .3s;
+  opacity: 0.8;
+  transition: transform 0.3s;
 }
 
-.content-meta[show-comma="true"] > span:not(:last-child) {
-	margin-left: 8px !important;
-    margin-right: 0px !important;
+li:has(> .folder-outer:not(.open)) > .folder-container > svg {
+  transform: rotate(90deg) !important;
 }
 
-.tags {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+html[dir="ltr"] li:has(> .folder-outer:not(.open)) > .folder-container > svg {
+  transform: none !important;
 }
 
 .folder-icon {
-	margin-right: 0px !important;
-	margin-left: 5px !important;
+  margin-right: 0 !important;
+  margin-left: 5px !important;
+}
+
+html[dir="ltr"] .folder-icon {
+  margin-left: 0 !important;
+  margin-right: 5px !important;
 }
 
 #explorer-content ul {
-	padding-right: .5rem !important;
-	padding-left: 0px !important;
+  padding-inline-start: 0.5rem !important;
+  padding-inline-end: 0 !important;
 }
 
-.explorer {
-    border:1px solid var(--lightgray);
-    border-radius:5px;
-    padding:10px;
-    font-size:1rem;
-}
-
+.explorer,
 .toc {
-    border:1px solid var(--lightgray);
-    border-radius:5px;
-    padding:10px;
-    font-size:1rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
 }
 
 #toc-content .depth-0 {
-	padding: 0px !important;
-	padding-right: 1rem !important;
+  padding: 0 !important;
+  padding-inline-start: 1rem !important;
 }
 
 #toc-content .depth-1 {
-	padding: 0px !important;
-	padding-right: 1.5rem !important;
+  padding: 0 !important;
+  padding-inline-start: 1.5rem !important;
 }
 
 #toc-content .depth-2 {
-	padding: 0px !important;
-	padding-right: 2rem !important;
+  padding: 0 !important;
+  padding-inline-start: 2rem !important;
 }
 
 #toc-content .depth-3 {
-	padding: 0px !important;
-	padding-right: 2.5rem !important;
+  padding: 0 !important;
+  padding-inline-start: 2.5rem !important;
 }
 
 .backlinks > ul {
-    border: 1px solid var(--lightgray);
-    border-radius: 5px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 35px;
-    font-size: 1rem;
-    list-style: circle;
+  border: 1px solid var(--lightgray);
+  border-radius: 5px;
+  padding: 10px 10px 10px 35px;
+  font-size: 1rem;
+  list-style: circle;
 }
 
-
-
-li:has(> .folder-outer:not(.open)) > .folder-container > svg {
-	transform: rotate(90deg) !important;
-}
-
-footer {
-	text-align: center;
-}
-
-footer ul {
-	display: unset;
-}
-
-code { 
-	direction: ltr !important;
+html[dir="ltr"] .backlinks > ul {
+  padding: 10px 35px 10px 10px;
 }
 
 .search {
-    max-width: unset;
+  max-width: unset;
 }
 
 div.search.mobile-only {
-    padding-right: 10px !important;
+  padding-inline-end: 10px !important;
 }
 
-.center img {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+footer {
+  text-align: center;
 }
 
-
-// Farsi Blockquote
-
-.markdown-preview-view .farsi-blockquote {
-    direction: rtl;
-    
-    margin: 0 auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 0 20px 0 0;
-
-    border-right: 2px solid var(--text-muted) !important;
-    border-left: unset;
-
-    
-    color: var(--text-muted);
-    /* color: gray; */
-}
-  
-.farsi-blockquote {
-    direction: rtl;
-    padding: 0 20px 0 0;
-
-    max-width: var(--max-width);
-
-    border-right: 2px solid var(--text-muted) !important;
-    border-left: unset;
-
-    font-family: Sahel;
-    font-size: 16px;
-    /* font-style: italic; */
-    color: var(--text-muted);   
-    max-width: var(--max-width);
-    margin: 0 auto!important;
-    width: var(--line-width-adaptive);
-    /* color: gray; */
+footer ul {
+  display: unset;
 }
 
-.farsi-blockquote-black {
-    color: var(--text-normal) !important;
-}
+// --- متن ---
 
-.farsi-blockquote::before {
-    content:unset;
-}
-
-blockquote .farsi-footer {
-    margin-top: 1em;
-    padding: 0;
-    color: var(--text-muted);
-    font-size: 10pt;
-    text-align: right;
-    font-family: Sahel;
-    font-style: normal;
-    color: gray;
-}
-
-.markdown-preview-view blockquote .farsi-footer {
-    margin-top: 1em !important;
-    padding: 0;
-    color: var(--text-muted);
-    font-size: 10pt;
-    text-align: right;
-    font-family: Sahel;
-    font-style: normal;
-    /* color: gray; */
-}
-
-blockquote footer:before {
-    content: '— ';
-}
-
-
-.markdown-preview-view blockquote {
-    direction: rtl;
-    
-    margin: 0 auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 0 calc(var(--nested-padding)) 0 0;
-
-    border-right: 2px solid var(--text-muted) !important;
-    border-left: unset;
-
-    
-    color: var(--text-muted);
-    /* color: gray; */
-}
-  
+// در Quartz پایه، نوار نقل‌قول سمت چپ است؛ در متن راست‌به‌چپ باید کنار متن، یعنی سمت راست، بیاید.
 blockquote {
-    direction: rtl;
-
-    margin: 0 auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 0 calc(var(--nested-padding)) 0 0;
-
-    // border-right: 2px solid var(--text-muted) !important;
-    border-left: unset;
-
-    font-family: Sahel;
-    font-size: 17px;
-    /* font-style: italic; */
-    color: var(--text-muted);   
-    width: var(--line-width-adaptive);
-    /* color: gray; */
+  border-left: 0;
+  padding-left: 0;
+  border-inline-start: 3px solid var(--secondary);
+  padding-inline-start: 1rem;
+  color: var(--darkgray);
 }
 
-blockquote::before {
-    content: none !important;
+code {
+  direction: ltr !important;
 }
 
-// English Blockquote
-
-.markdown-preview-view .english-blockquote {
-    margin: 0 auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-left: 2px solid var(--text-muted) !important;
-    border-right: none !important;
-    direction: ltr;
-    color: var(--text-muted);
-    font-size: 19px !important;
-    font-style: italic;
-    padding: 0 0 0 20px;
-}
-  
-.english-blockquote {
-    direction: ltr;
-    
-    max-width: var(--max-width);
-
-    margin: 0 auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 0 0 0 20px;
-
-    border-left: 2px solid var(--text-muted) !important;
-    border-right: none !important;
-
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    font-style: italic;
-    color: var(--text-muted);   
+.content-meta[show-comma="true"] > span:not(:last-child) {
+  margin-inline-end: 8px !important;
+  margin-inline-start: 0 !important;
 }
 
-.english-blockquote::before {
-    content: none;
+.tags {
+  padding: 0 !important;
 }
-
-blockquote .english-footer {
-    margin-top: 1em;
-    padding: 0;
-    color: var(--text-muted);
-    font-size: 10pt;
-    text-align: left;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-style: normal;
-    text-transform: uppercase;
-}
-
-.markdown-preview-view blockquote .english-footer {
-    margin-top: 1em !important;
-    padding: 0;
-    color: var(--text-muted);
-    font-size: 10pt;
-    text-align: left;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-style: normal;
-    text-transform: uppercase;
-    
-}
-
-blockquote footer:before {
-    content: '— ';
-}
-
-
-// Highlight Coloring
 
 .text-highlight {
-    font-weight: normal;
-    background-color: transparent;
-    padding: 1px 5px 1px 5px;
-    border-radius: 5px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 3px;
-    transition: background 200ms ease;
-    background-image: linear-gradient(120deg, var(--secondary), var(--secondary));
+  font-weight: normal;
+  background-color: transparent;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 3px;
+  transition: background 200ms ease;
+  background-image: linear-gradient(120deg, var(--secondary), var(--secondary));
 }
 
 .text-highlight:hover {
-    background-size: 100% 100%;
+  background-size: 100% 100%;
 }
 
-// Center tables
+.center img {
+  display: block !important;
+  margin-inline: auto !important;
+}
 
 .table-container > table {
-    margin: auto;
-}
-
-// Two columns in index page
-
-// .index ul{
-//     list-style-type: disc;
-//     -webkit-columns: 2;
-//     -moz-columns: 2;
-//     columns: 2;
-//     list-style-position: inside;
-// }
-
-/* Customize website's scrollbar like Mac OS
-Not supports in Firefox and IE */
-
-/* total width */
-body::-webkit-scrollbar {
-    background-color: #fff;
-    width: 16px;
-}
-
-/* background of the scrollbar except button or resizer */
-body::-webkit-scrollbar-track {
-    background-color: #fff;
-}
-
-/* scrollbar itself */
-body::-webkit-scrollbar-thumb {
-    background-color: #babac0;
-    border-radius: 16px;
-    border: 4px solid #fff;
-}
-
-/* set button(top and bottom of the scrollbar) */
-body::-webkit-scrollbar-button {
-    display:none;
+  margin: auto;
 }
 
 th {
-    text-align: center !important;
+  text-align: center !important;
 }
 
-// Katex LTR
+// --- نوار پیمایش (با رنگ‌های تم تا در حالت تیره سفید نشود) ---
+
+body::-webkit-scrollbar {
+  background-color: var(--light);
+  width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--light);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--lightgray);
+  border-radius: 16px;
+  border: 3px solid var(--light);
+}
+
+body::-webkit-scrollbar-button {
+  display: none;
+}
+
+// --- شعر (برای صفحه‌هایی که بعداً شعر می‌گذارم؛ فعلاً در هیچ نوشته‌ای استفاده نشده) ---
 
 .poem-title {
-    text-align: center;
-    font-family: IranNastaliq !important;
+  text-align: center;
 }
 
 h3.poem-title::before {
-    content: none;
+  content: none;
 }
 
 .poem-verse-div {
-    margin: auto;
-    height: 30px;
-    text-align: center;
-    clear: both;
-    font-weight: 400;
+  margin: auto;
+  height: 30px;
+  text-align: center;
+  clear: both;
+  font-weight: 400;
 }
 
 .poem-right-verse-div {
-    width: 45%;
-    float: right;
-    text-align: left;
+  width: 45%;
+  float: right;
+  text-align: left;
 }
 
 .poem-left-verse-div {
-    width: 45%;
-    float: left;
-    text-align: right;
+  width: 45%;
+  float: left;
+  text-align: right;
 }
 
 .poem-reference {
-    display:table;
-    margin:0 auto;
-    direction: rtl;
+  display: table;
+  margin: 0 auto;
+  direction: rtl;
 }
 
-.poem-verse-num {
-    position: relative !important;
-    right: -5% !important;
-    top: 34px !important;
-    line-height: 0px !important;
-    margin-top: 6px !important;
-    margin-right: 3px !important;
-    font-family: 'Sahel FD' !important;
-    font-weight: 500 !important;
-    font-size: 10px !important;
-    font-weight: bold !important;
-    font-style: normal !important;
-    color: var(--text-faint) !important;
+// --- چیدمان واکنش‌گرا ---
+
+// دسکتاپ (عرض بیشتر از $fullPageWidth): ستون‌های کناری ثابت‌اند. padding باریک می‌شود تا گراف و
+// اکسپلورر جا شوند، و اگر محتوای ستون از ارتفاع صفحه بیشتر شد، خودش اسکرول می‌خورد (نه اینکه بریده شود).
+@media all and (min-width: #{$fullPageWidth + 1px}) {
+  // «.sidebar.right» هم جدا آمده چون قاعده‌ی پایه‌ی Quartz برای آن (flex-wrap: wrap) اولویت بیشتری از «.sidebar» دارد
+  .page > #quartz-body .sidebar,
+  .page > #quartz-body .sidebar.right {
+    padding: 0 1.25rem;
+    max-height: calc(100vh - #{$topSpacing});
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    // ستون راست در Quartz flex-wrap: wrap دارد؛ با max-height، آیتم‌ها به‌جای اسکرول در ستون‌های افقی می‌شکستند
+    flex-wrap: nowrap;
+  }
+
+  // اکسپلورر بلند است؛ با اسکرول داخلی، فهرست مطالب زیرش همیشه در دید می‌ماند
+  .page > #quartz-body .sidebar .explorer #explorer-content {
+    max-height: 26vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+
+// نمایشگرهای بزرگ: متن کمی درشت‌تر تا ستون وسط توی صفحه گم نشود
+@media all and (min-width: 1700px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+// تبلت و موبایل: ستون‌ها زیر هم‌اند. سربرگ در یک ردیف بشکند و ستون پایین (گراف، بک‌لینک‌ها) تمام‌عرض باشد
+@media all and (max-width: #{$fullPageWidth}) {
+  .page > #quartz-body .sidebar.left {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 0.5rem;
+  }
+
+  // ترتیب در موبایل: سربرگ، جست‌وجو، نوشته، و بعد بقیه‌ی ستون راست (گراف، بک‌لینک‌ها).
+  // display: contents باعث می‌شود فرزندان ستون راست با ستون وسط هم‌ردیف مرتب شوند.
+  .page > #quartz-body .sidebar.left {
+    order: -2;
+  }
+
+  .page > #quartz-body .sidebar.right {
+    display: contents;
+  }
+
+  .page > #quartz-body .sidebar.right > .search {
+    order: -1;
+    margin-top: 1rem;
+  }
+
+  .page > #quartz-body .center {
+    order: 0;
+  }
+
+  .page > #quartz-body .sidebar.right > :not(.search) {
+    order: 2;
+    margin-top: 1.25rem;
+  }
+
+  .page > #quartz-body .sidebar.right > :last-child {
+    padding-bottom: 2rem;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .page article > h1 {
+    font-size: 1.6rem;
+  }
+
+  article table {
+    font-size: 0.9rem;
+  }
+
+  blockquote {
+    padding-inline-start: 0.75rem;
+  }
+
+  .hub-list details {
+    padding: 0.3rem 0.5rem;
+  }
+}
+// =====================================================================
+// ظاهر سایت: «کاغذ نقشه‌کشی». شبکه‌ی نقطه‌ای کم‌رنگ، تیترهایی که مثل گره‌ی نمودار به یک خط
+// می‌رسند، و رنگ قرمزِ قلبِ لوگو فقط برای نشان‌دادن چیزهای مهم.
+// =====================================================================
+
+:root {
+  --edge: color-mix(in srgb, var(--gray) 45%, transparent);
+  --card: color-mix(in srgb, var(--light) 70%, var(--lightgray));
+  --radius: 10px;
+}
+
+body {
+  background-color: var(--light);
+  background-image: radial-gradient(color-mix(in srgb, var(--gray) 28%, transparent) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+  line-height: 1.95;
+}
+
+.page > #quartz-body .center {
+  background: color-mix(in srgb, var(--light) 94%, transparent);
+  border-radius: 14px;
+  padding: 1.5rem clamp(1rem, 3vw, 2.25rem) 2rem;
+  box-shadow: 0 0 0 1px var(--lightgray), 0 12px 32px -18px rgba(10, 25, 40, 0.25);
+}
+
+// --- تایپوگرافی ---
+article {
+  font-size: 1.04rem;
+
+  > h1 {
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-size: 2.1rem;
+    margin: 0.5rem 0 1rem;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  // گره و خط: تیتر بخش
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 750;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-top: 2.6rem;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 0.62em;
+      height: 0.62em;
+      border-radius: 50%;
+      border: 2px solid var(--secondary);
+      background: var(--light);
+    }
+
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to var(--edge-dir, left), var(--edge), transparent);
+    }
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin-top: 1.8rem;
+    color: var(--tertiary);
+  }
+
+  a.internal {
+    background-color: transparent;
+    color: var(--tertiary);
+    padding: 0;
+    border-radius: 0;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--tertiary) 35%, transparent);
+    text-underline-offset: 0.28em;
+    transition: color 0.15s, text-decoration-color 0.15s;
+
+    &:hover {
+      color: var(--secondary);
+      text-decoration-color: var(--secondary);
+    }
+
+    &.tag-link {
+      text-decoration: none;
+    }
+  }
+
+  ul,
+  ol {
+    padding-inline-start: 1.4rem;
+  }
+
+  li::marker {
+    color: var(--secondary);
+  }
+}
+
+html[dir="ltr"] article h2::after {
+  --edge-dir: right;
+}
+
+html[dir="rtl"] article h2::after {
+  --edge-dir: left;
+}
+
+// --- نقل‌قول و کالوت ---
+blockquote {
+  border-inline-start: 0;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--tertiary) 7%, transparent);
+  box-shadow: inset 3px 0 0 var(--tertiary);
+  color: var(--darkgray);
+  margin: 1.4rem 0;
+}
+
+html[dir="rtl"] blockquote {
+  box-shadow: inset -3px 0 0 var(--tertiary);
+}
+
+.callout {
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--callout-color, var(--tertiary)) 28%, transparent);
+  box-shadow: none;
+}
+
+// --- برچسب‌ها و فراداده ---
+.tags > li > a,
+a.tag-link {
+  border-radius: 999px;
+  padding: 0.12rem 0.7rem;
+  font-size: 0.82rem;
+  background: color-mix(in srgb, var(--tertiary) 10%, transparent);
+  color: var(--tertiary);
+  border: 1px solid color-mix(in srgb, var(--tertiary) 25%, transparent);
+}
+
+.content-meta {
+  font-size: 0.86rem;
+  color: var(--gray);
+}
+
+// --- ستون‌های کناری: کارت‌های آرام، نه جعبه‌های تو در تو ---
+.explorer,
+.toc,
+.backlinks > ul {
+  border: 0;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--light) 80%, transparent);
+  box-shadow: 0 0 0 1px var(--lightgray);
+  padding: 0.75rem 0.9rem;
+}
+
+.backlinks > ul {
+  list-style: none;
+  padding: 0.6rem 1rem;
+}
+
+.sidebar h3,
+.sidebar .explorer button h2,
+.sidebar .toc button h3,
+.sidebar .backlinks h3 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 0.2rem 0 0.4rem;
+}
+
+.sidebar .page-title {
+  font-weight: 850;
+  font-size: 1.6rem;
+
+  a {
+    color: var(--dark);
+    background: none;
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+.explorer a,
+#toc-content a {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.explorer a.active,
+#toc-content li.in-view > a {
+  color: var(--secondary);
+}
+
+.search .search-button {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--light) 80%, transparent);
+  box-shadow: 0 0 0 1px var(--lightgray);
+}
+
+.graph > .graph-outer {
+  border-radius: var(--radius);
+  border: 0;
+  box-shadow: 0 0 0 1px var(--lightgray);
+  background: color-mix(in srgb, var(--light) 80%, transparent);
+}
+
+// --- فهرست مطالب هر پوشه (HubList) به‌شکل کارت ---
+.hub-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+
+  details {
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: 0 0 0 1px var(--lightgray);
+    padding: 0.7rem 1rem;
+    align-self: start;
+    transition: box-shadow 0.15s;
+
+    &[open] {
+      box-shadow: 0 0 0 1.5px var(--secondary);
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1.5px var(--tertiary);
+    }
+
+    summary {
+      font-weight: 750;
+      cursor: pointer;
+      line-height: 1.7;
+    }
+
+    ul {
+      margin: 0.5rem 0 0.2rem;
+      padding-inline-start: 1.1rem;
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+  }
+
+  .hub-count {
+    font-weight: 500;
+    color: var(--gray);
+    font-size: 0.85rem;
+  }
+}
+
+// --- قبلی/بعدی و مطالب مرتبط ---
+.prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    box-shadow: 0 0 0 1px var(--lightgray);
+    background: var(--card);
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+
+    &:hover {
+      box-shadow: 0 0 0 1.5px var(--secondary);
+      transform: translateY(-1px);
+    }
+  }
+
+  .pn-label {
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+  }
+
+  .pn-title {
+    font-weight: 700;
+    color: var(--dark);
+  }
+}
+
+.related-notes {
+  margin-top: 2rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--lightgray);
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+// --- جدول و کد ---
+article table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--lightgray);
+
+  th {
+    background: color-mix(in srgb, var(--tertiary) 10%, transparent);
+    font-weight: 700;
+  }
+
+  th,
+  td {
+    border: 0;
+    border-bottom: 1px solid var(--lightgray);
+    padding: 0.55rem 0.8rem;
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+article pre {
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--lightgray);
+}
+
+article img {
+  border-radius: var(--radius);
+}
+
+// --- فوکوس و حرکت ---
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .page > #quartz-body .center {
+    border-radius: 0;
+    box-shadow: none;
+    padding-inline: 1rem;
+  }
+
+  article > h1 {
+    font-size: 1.65rem;
+  }
+
+  article h2 {
+    font-size: 1.3rem;
+  }
+
+  .prev-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- پرداخت دوم ---
+.sidebar,
+.sidebar.right {
+  scrollbar-color: var(--lightgray) transparent;
+}
+
+.explorer .folder-title,
+.explorer .folder-container button,
+.explorer .folder-container a {
+  color: var(--dark);
+}
+
+.explorer a:hover,
+.explorer .folder-container:hover button {
+  color: var(--secondary);
+}
+
+#toc-content a {
+  color: var(--darkgray);
+}
+
+#toc-content li.in-view > a,
+#toc-content a:hover {
+  color: var(--secondary);
+}
+
+.backlinks a,
+.backlinks li a {
+  color: var(--tertiary);
+  font-weight: 500;
+  background: none;
+}
+
+// --- تراز بالای صفحه و حاشیه‌ی کارت‌های کناری ---
+@media all and (min-width: #{$fullPageWidth + 1px}) {
+  .page > #quartz-body .center {
+    margin-top: 2.25rem;
+    margin-bottom: 2rem;
+    padding-top: 1.1rem;
+  }
+
+  .page > #quartz-body .sidebar .backlinks > ul,
+  .page > #quartz-body .sidebar .explorer,
+  .page > #quartz-body .sidebar .toc {
+    margin-inline: 3px;
+  }
 }
