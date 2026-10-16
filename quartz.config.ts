@@ -13,7 +13,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     locale: "fa-IR",
-    baseUrl: "razeytoon.github.io/Zeyleada/",
+    baseUrl: "zeyleada.ir",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
